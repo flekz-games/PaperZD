@@ -3,6 +3,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Templates/SharedPointer.h"
+#include "AssetRegistry/AssetData.h"
 
 class UEdGraph;
 class UPaperZDAnimBP;

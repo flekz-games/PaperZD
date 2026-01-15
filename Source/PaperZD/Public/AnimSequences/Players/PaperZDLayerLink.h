@@ -24,12 +24,7 @@ struct FPaperZDLayerLinkData
 	int32 LayerIndex;
 
 public:
+	//ctor
 	FPaperZDLayerLinkData()
-		: LayerIndex(0)
-	{}
-
-	FPaperZDLayerLinkData(UPrimitiveComponent* InPrimitiveComponent, int32 InLayerIndex)
-		: LinkedComponentPtr(InPrimitiveComponent)
-		, LayerIndex(InLayerIndex)
 	{}
 };

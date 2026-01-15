@@ -387,7 +387,6 @@ void FPaperZDAnimationSourceViewportClient::UpdateCompositeRenderComponents()
 				const FPaperZDCompositeLayerData& Data = LayerData[Index];
 				UPrimitiveComponent* CompositeComponent = NewObject<UPrimitiveComponent>(GetTransientPackage(), AnimationSourcePtr->GetRenderComponentClass());
 				PreviewScene->AddComponent(CompositeComponent, FTransform(Data.Offset));
-				LinkData.Emplace(CompositeComponent, Index + 1);
 				CompositeRenderComponents.Add(CompositeComponent);
 			}
 		}
@@ -411,6 +410,11 @@ void FPaperZDAnimationSourceViewportClient::UpdateCompositeRenderComponents()
 		{
 			const FPaperZDCompositeLayerData& Data = LayerData[i];
 			CompositeRenderComponents[i]->SetRelativeLocation(Data.Offset);
+
+			//Create the link
+			FPaperZDLayerLinkData& Link = LinkData.AddDefaulted_GetRef();
+			Link.LinkedComponentPtr = CompositeRenderComponents[i];
+			Link.LayerIndex = i + 1;
 		}
 
 		//Link the layers to the player

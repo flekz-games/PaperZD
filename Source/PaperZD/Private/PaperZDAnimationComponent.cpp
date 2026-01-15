@@ -170,7 +170,11 @@ void UPaperZDAnimationComponent::GenerateCompositeLayers()
 					UPrimitiveComponent* CompositeComponent = Cast<UPrimitiveComponent>(GetOwner()->AddComponentByClass(AnimSource->GetRenderComponentClass(), true, FTransform(LayerData.Offset), true));
 					CompositeComponent->SetupAttachment(RenderComponent);
 					GetOwner()->FinishAddComponent(CompositeComponent, true, FTransform(LayerData.Offset));
-					CompositeLayerLinkData.Emplace(CompositeComponent, i + 1);
+
+					//Create the link
+					FPaperZDLayerLinkData& Link = CompositeLayerLinkData.AddDefaulted_GetRef();
+					Link.LinkedComponentPtr = CompositeComponent;
+					Link.LayerIndex = i + 1;
 				}
 			}
 		}
@@ -184,7 +188,11 @@ void UPaperZDAnimationComponent::GenerateCompositeLayers()
 		{
 			const FPaperZDComponentReference& Ref = CompositeLayerComponentsRefs[i];
 			UPrimitiveComponent* PrimComponent = Cast<UPrimitiveComponent>(Ref.GetComponent(GetOwner()));
-			CompositeLayerLinkData.Emplace(PrimComponent, i + 1);
+			
+			//Create the link
+			FPaperZDLayerLinkData& Link = CompositeLayerLinkData.AddDefaulted_GetRef();
+			Link.LinkedComponentPtr = PrimComponent;
+			Link.LayerIndex = i + 1;
 		}
 	}
 }

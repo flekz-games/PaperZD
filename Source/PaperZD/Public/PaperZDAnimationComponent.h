@@ -38,7 +38,7 @@ class PAPERZD_API UPaperZDAnimationComponent : public UActorComponent, public IP
 	bool bBuildCompositeLayersAutomatically;
 
 	/* Additional render components linked to specific layers of animation. */
-	UPROPERTY(EditAnywhere, Category = "PaperZD", meta = (EditCondition = "!bBuildCompositeLayersAutomatically"))
+	UPROPERTY(EditAnywhere, Category = "PaperZD", meta = (AllowAnyComponent, UseComponentPicker, AllowedClasses = "/Script/Engine.PrimitiveComponent", EditCondition = "!bBuildCompositeLayersAutomatically"))
 	TArray<FPaperZDComponentReference> CompositeLayerComponentsRefs;
 
 	/* Cached composite layer link data to be sent to the player, either filled by the composite components or built automatically. */
